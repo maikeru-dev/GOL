@@ -10,45 +10,38 @@ class Vector {
     this.y = y;
   }
 }
-class Chunk extends Vector {
-  constructor(x, y) {
-    super(x, y);
-    this.binInt = 0;
-    this.magnitude = Math.sqrt(x * x + y * y);
-  }
-}
 
 class ChunkManager {
   constructor() {
-    this.size = 0;
-    this.chunks = [];
+    this.chunks = {};
   }
-  insertChunk(chunk) {
-    if (size == 0) {
-      chunks += chunk;
+  key(x, y) {
+    return new Vector(x, y);
+  }
+  isChunkPresent(chunk) {
+    if (chunk in chunks) {
       return true;
-    }
-
-    let found = 0;
-    let searchSize = size;
-    let searchArray = chunks;
-    while (found == 0) {
-      let i;
-      if (searchSize % 2 != 0) {
-        i = (searchSize - 1) / 2;
-      } else {
-        i = searchSize / 2;
-      }
-
-      if (chunks[i].magnitude == chunk.magnitude) {
-      } else if (chunks[i].magnitude < chunk.magnitude) {
-      } else {
-      }
+    } else {
+      return false;
     }
   }
-  addChunk(x, y, value) {
-    let chunk = new Chunk(x, y, value);
-    this.insertChunk(chunk);
+  togglePixel(chunk, vector) {
+    chunk[vector.x][vector.y] != chunk[vector.x][vector.y];
+  }
+
+  createChunk(x, y) {
+    let chunk = this.key(x, y);
+
+    if (chunk in chunks) {
+      return null;
+    }
+
+    for (i = 0; i <= 32; i++) {
+      for (j = 0; j <= 32; i++) {
+        chunks[chunk][i][j] = false;
+      }
+    }
+
     return chunk;
   }
 }
